@@ -13,14 +13,14 @@ public class FormulaMachineTest {
 
   @BeforeTest
   public void setup() {
-    machine = new FormulaMachine();
+    machine = new FormulaMachine(new BasicCalculator());
   }
 
   @Test(dependsOnMethods = {"testDivideUpperLimit"})
   public void testDivide() {
-    final Double result = machine.divide(10, 2);
+    final int result = machine.divide(10, 2);
     assertNotNull(result);
-    assertEquals(5, result, 0);
+    assertEquals(5, result);
   }
 
   @Test(expectedExceptions = {IllegalArgumentException.class})

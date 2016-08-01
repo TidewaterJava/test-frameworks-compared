@@ -12,21 +12,24 @@ public class FormulaMachineTest {
 
   @Before
   public void setup() {
-    machine = new FormulaMachine();
+    final BasicCalculator calculator = new BasicCalculator();
+    machine = new FormulaMachine(calculator);
   }
 
   @Test
   public void testDivide() {
-    assertEquals(0.1, machine.divide(1, 10), 0);
-    assertEquals(0.2, machine.divide(2, 10), 0);
-    assertEquals(0.3, machine.divide(3, 10), 0);
-    assertEquals(0.4, machine.divide(4, 10), 0);
-    assertEquals(0.5, machine.divide(5, 10), 0);
-    assertEquals(0.6, machine.divide(6, 10), 0);
-    assertEquals(0.7, machine.divide(7, 10), 0);
-    assertEquals(0.8, machine.divide(8, 10), 0);
-    assertEquals(0.9, machine.divide(9, 10), 0);
-    assertEquals(1.0, machine.divide(10, 10), 0);
+    assertEquals(0, machine.divide(1, 10), 0);
+    assertEquals(0, machine.divide(9, 10), 0);
+    assertEquals(1, machine.divide(10, 10), 0);
+    assertEquals(2, machine.divide(20, 10), 0);
+    assertEquals(3, machine.divide(30, 10), 0);
+    assertEquals(4, machine.divide(40, 10), 0);
+    assertEquals(5, machine.divide(50, 10), 0);
+    assertEquals(6, machine.divide(60, 10), 0);
+    assertEquals(7, machine.divide(70, 10), 0);
+    assertEquals(8, machine.divide(80, 10), 0);
+    assertEquals(9, machine.divide(90, 10), 0);
+    assertEquals(10, machine.divide(100, 10), 0);
   }
 
   @Test(expected = IllegalArgumentException.class)

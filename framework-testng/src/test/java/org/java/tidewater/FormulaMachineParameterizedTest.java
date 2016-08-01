@@ -12,28 +12,28 @@ public class FormulaMachineParameterizedTest {
 
   @BeforeTest
   public void setup() {
-    machine = new FormulaMachine();
+    machine = new FormulaMachine(new BasicCalculator());
   }
 
   @DataProvider
   public Object[][] validDataProvider() {
     return new Object[][] {
-        {1, 10, 0.1},
-        {2, 10, 0.2},
-        {3, 10, 0.3},
-        {4, 10, 0.4},
-        {5, 10, 0.5},
-        {6, 10, 0.6},
-        {7, 10, 0.7},
-        {8, 10, 0.8},
-        {9, 10, 0.9},
-        {10, 10, 1.0}};
+        {1, 10, 0},
+        {10, 10, 1},
+        {20, 10, 2},
+        {30, 10, 3},
+        {40, 10, 4},
+        {50, 10, 5},
+        {60, 10, 6},
+        {70, 10, 7},
+        {80, 10, 8},
+        {90, 10, 9},
+        {100, 10, 10}};
   }
 
   @Test(dataProvider = "validDataProvider")
-  public void testDivideWithParams(final int x, final int y, double expected) {
-
-    final Double result = machine.divide(x, y);
-    assertEquals(expected, result, 0);
+  public void testDivideWithParams(final int x, final int y, int expected) {
+    final int result = machine.divide(x, y);
+    assertEquals(expected, result);
   }
 }

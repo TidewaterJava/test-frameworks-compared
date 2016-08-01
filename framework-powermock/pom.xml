@@ -9,6 +9,11 @@
 	<artifactId>framework-powermock</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.java.tidewater</groupId>
+			<artifactId>common-examples</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-module-junit4</artifactId>
 			<version>1.6.5</version>

@@ -1,18 +1,30 @@
 package org.java.tidewater;
 
-import java.util.Objects;
-
 public class FormulaMachine {
-  public Double divide(Integer x, Integer y) {
-    if (Objects.isNull(x) || Objects.isNull(y)) {
-      return Double.valueOf(0);
+  private final CalculatorService calculator;
+
+  public FormulaMachine(CalculatorService calculator) {
+    this.calculator = calculator;
+  }
+
+  public int add(int x, int y) {
+    return calculator.add(x, y);
+  }
+
+  public int subtract(int x, int y) {
+    return calculator.subtract(x, y);
+  }
+
+  public int multiply(int x, int y) {
+    return calculator.multiply(x, y);
+  }
+
+  public int divide(int x, int y) {
+    if (y == 0) {
+      throw new IllegalArgumentException("Cannot divide by zero");
     }
 
-    if (x > 999) {
-      throw new IllegalArgumentException("X should be less than 1000");
-    }
-
-    return (double) x / y;
+    return calculator.divide(x, y);
   }
 
   public static String generateFileName() {

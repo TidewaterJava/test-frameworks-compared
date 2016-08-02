@@ -1,9 +1,15 @@
 package org.java.tidewater;
 
 public class FormulaMachine {
-  private final CalculatorService calculator;
+  private CalculatorService calculator;
+
+  public FormulaMachine() {}
 
   public FormulaMachine(CalculatorService calculator) {
+    this.calculator = calculator;
+  }
+
+  public void setCalculator(CalculatorService calculator) {
     this.calculator = calculator;
   }
 

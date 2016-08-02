@@ -9,7 +9,7 @@
 
 package org.java.tidewater;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,13 +19,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class FormulaMachineTest {
+public class FormulaMachineParameterizedTest {
 
   private final int x;
   private final int y;
   private final int expected;
 
-  public FormulaMachineTest(int x, int y, int expected) {
+  public FormulaMachineParameterizedTest(int x, int y, int expected) {
     this.x = x;
     this.y = y;
     this.expected = expected;

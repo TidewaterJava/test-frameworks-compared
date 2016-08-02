@@ -1,5 +1,8 @@
 package org.java.tidewater
+
+import static spock.lang.MockingApi.Mock
 import static spock.lang.MockingApi.Spy
+import static spock.lang.MockingApi.Stub
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -66,13 +69,14 @@ class FormulaMachineTest extends Specification {
     setup:
     def calculator = Stub(CalculatorService) {
       divide(_, _) >> 27
+      add(_, _) >>> [27, 28]
     }
     def machine = new FormulaMachine(calculator)
 
-    when:
-    int result = machine.divide(100, 10);
-
-    then:
-    result == 27
+    expect:
+    machine.divide(100, 10) == 27
+    machine.add(1, 1) == 27
+    machine.add(1, 1) == 28
+    machine.add(1, 1) == 28
   }
 }

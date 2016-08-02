@@ -1,10 +1,11 @@
 package org.java.tidewater;
 
-import org.easymock.EasyMockRule;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.junit.Assert.assertEquals;
+
 import org.easymock.EasyMockSupport;
-import org.easymock.Mock;
-import org.easymock.TestSubject;
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -12,20 +13,22 @@ import org.junit.Test;
  */
 public class ExampleTest extends EasyMockSupport {
 
-	@Rule
-	public EasyMockRule rule = new EasyMockRule(this);
+  private FormulaMachine machine;
+  private CalculatorService calculator;
 
-	@Mock
-	private Collaborator collaborator; // 1
+  @Before
+  public void setUp() throws Exception {
+    calculator = createNiceMock(CalculatorService.class);
+    machine = new FormulaMachine(calculator);
+  }
 
-	@TestSubject
-	private final ClassUnderTest classUnderTest = new ClassUnderTest(); // 2
+  @Test
+  public void testCalculatorMocking() {
+    // Setup the mock expectations
+    expect(calculator.divide(1, 10)).andReturn(111);
 
-	@Test
-	public void addDocument() {
-		collaborator.documentAdded("New Document"); // 3
-		replayAll(); // 4
-		classUnderTest.addDocument("New Document", "content".getBytes()); // 5
-		verifyAll(); // 6
-	}
+    // Activate the mock
+    replay(calculator);
+    assertEquals(111, machine.divide(1, 10));
+  }
 }
